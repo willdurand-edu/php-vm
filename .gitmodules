@@ -1,0 +1,12 @@
+[submodule "puppet/modules/bazinga"]
+	path = puppet/modules/bazinga
+	url = https://github.com/willdurand/puppet-bazinga.git
+[submodule "puppet/modules/apt"]
+	path = puppet/modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt.git
+[submodule "puppet/modules/stdlib"]
+	path = puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "puppet/modules/ntp"]
+	path = puppet/modules/ntp
+	url = https://github.com/saz/puppet-ntp.git
