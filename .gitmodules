@@ -10,3 +10,9 @@
 [submodule "puppet/modules/ntp"]
 	path = puppet/modules/ntp
 	url = https://github.com/saz/puppet-ntp.git
+[submodule "puppet/modules/composer"]
+	path = puppet/modules/composer
+	url = git@github.com:willdurand/puppet-composer.git
+[submodule "puppet/modules/php"]
+	path = puppet/modules/php
+	url = git://github.com/saz/puppet-php.git

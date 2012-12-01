@@ -6,4 +6,5 @@ node 'vm-licpro' {
   }
 
   include bazinga::apt
+  include bazinga::roles::php
 }
