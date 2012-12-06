@@ -1,18 +1,18 @@
 [submodule "puppet/modules/bazinga"]
 	path = puppet/modules/bazinga
-	url = https://github.com/willdurand/puppet-bazinga.git
+	url = git://github.com/willdurand/puppet-bazinga.git
 [submodule "puppet/modules/apt"]
 	path = puppet/modules/apt
-	url = https://github.com/puppetlabs/puppetlabs-apt.git
+	url = git://github.com/puppetlabs/puppetlabs-apt.git
 [submodule "puppet/modules/stdlib"]
 	path = puppet/modules/stdlib
-	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+	url = git://github.com/puppetlabs/puppetlabs-stdlib.git
 [submodule "puppet/modules/ntp"]
 	path = puppet/modules/ntp
-	url = https://github.com/saz/puppet-ntp.git
+	url = git://github.com/saz/puppet-ntp.git
 [submodule "puppet/modules/composer"]
 	path = puppet/modules/composer
-	url = git@github.com:willdurand/puppet-composer.git
+    url = git://github.com/willdurand/puppet-composer.git
 [submodule "puppet/modules/php"]
 	path = puppet/modules/php
 	url = git://github.com/saz/puppet-php.git
