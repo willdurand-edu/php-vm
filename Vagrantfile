@@ -7,11 +7,13 @@ Vagrant::Config.run do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "squeeze32"
+  config.vm.box = "lucid32"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://mathie-vagrant-boxes.s3.amazonaws.com/debian_squeeze_32.box"
+
+  config.ssh.private_key_path = "~/.ssh/insecure_private_key"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
