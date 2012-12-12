@@ -104,7 +104,10 @@ Vagrant::Config.run do |config|
   #   chef.validation_client_name = "ORGNAME-validator"
 
   # Run a shell script to initialize the VM
-  config.vm.provision :shell, :path => "puppet/modules/bazinga/bootstrap.sh"
+  config.vm.provision :shell do |shell|
+    shell.path = "puppet/modules/bazinga/bootstrap.sh"
+    shell.args = "--distribution lucid"
+  end
 
   # Then use Puppet for provisioning
   config.vm.provision :puppet do |puppet|
