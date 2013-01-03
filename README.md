@@ -16,13 +16,12 @@ install Vagrant.
 **Note:** an Internet access is mandatory, as well as [administrator privileges
 in order to configure NFS](http://vagrantup.com/v1/docs/nfs.html).
 
-
 #### Get the code
 
     git clone https://github.com/willdurand/licpro-php-vm.git
     git submodule update --init
 
-#### Install vagrant private key
+#### Install the Vagrant insecure private key
 
     wget https://raw.github.com/mitchellh/vagrant/master/keys/vagrant -O ~/.ssh/insecure_private_key
     chmod 600 ~/.ssh/insecure_private_key
