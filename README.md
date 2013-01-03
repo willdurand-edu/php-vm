@@ -22,6 +22,10 @@ in order to configure NFS](http://vagrantup.com/v1/docs/nfs.html).
     git clone https://github.com/willdurand/licpro-php-vm.git
     git submodule update --init
 
+#### Install vagrant private key
+
+    wget https://raw.github.com/mitchellh/vagrant/master/keys/vagrant -O ~/.ssh/insecure_private_key
+    chmod 600 ~/.ssh/insecure_private_key
 
 #### Start the VM
 
