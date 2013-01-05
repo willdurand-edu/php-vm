@@ -11,7 +11,7 @@ Vagrant::Config.run do |config|
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  # config.vm.box_url = "http://mathie-vagrant-boxes.s3.amazonaws.com/debian_squeeze_32.box"
+  config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
 
   config.ssh.private_key_path = "~/.ssh/insecure_private_key"
 
