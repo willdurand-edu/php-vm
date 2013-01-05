@@ -18,8 +18,7 @@ in order to configure NFS](http://vagrantup.com/v1/docs/nfs.html).
 
 #### Get the code
 
-    git clone https://github.com/willdurand/licpro-php-vm.git
-    git submodule update --init
+    git clone git://github.com/willdurand/licpro-php-vm.git --recursive
 
 #### Install the Vagrant insecure private key
 
