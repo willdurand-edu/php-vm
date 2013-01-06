@@ -10,8 +10,8 @@ node 'vm-licpro' {
   include bazinga::roles::php_mysql
   include bazinga::roles::apache_fpm
 
-  bazinga::apache_fpm::vhost { 'vagrant-projects':
-    doc_root     => '/vagrant/projects',
+  bazinga::apache_fpm::vhost { 'www':
+    doc_root     => '/var/www',
     server_admin => 'root@vm-licpro'
   }
 }
