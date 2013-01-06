@@ -14,6 +14,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
 
   config.ssh.private_key_path = "~/.ssh/insecure_private_key"
+  config.ssh.max_tries = 3
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
@@ -41,7 +42,6 @@ Vagrant::Config.run do |config|
   # folder, and the third is the path on the host to the actual folder.
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
   config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
-  config.vm.share_folder("v-projects", "/var/www", "./projects", :nfs => true)
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
