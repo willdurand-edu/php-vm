@@ -14,4 +14,8 @@ node 'vm-licpro' {
     doc_root     => '/var/www',
     server_admin => 'root@vm-licpro'
   }
+
+  package { 'nano':
+    ensure => absent
+  }
 }
