@@ -14,7 +14,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
 
   config.ssh.private_key_path = "~/.ssh/insecure_private_key"
-  config.ssh.max_tries = 3
+  config.ssh.max_tries = 10
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
