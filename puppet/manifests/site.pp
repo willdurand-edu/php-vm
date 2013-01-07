@@ -9,6 +9,7 @@ node 'vm-licpro' {
   include bazinga::roles::mysql
   include bazinga::roles::php_mysql
   include bazinga::roles::apache_fpm
+  include bazinga::php::phpsh
 
   bazinga::apache_fpm::vhost { 'www':
     doc_root     => '/var/www',
