@@ -16,6 +16,12 @@ node 'vm-licpro' {
     server_admin => 'root@vm-licpro'
   }
 
+  bazinga::apache_fpm::vhost { 'uframework':
+    doc_root     => '/var/www/uframework/web',
+    server_admin => 'root@vm-licpro',
+    port         => 81,
+  }
+
   package { 'nano':
     ensure => absent
   }
