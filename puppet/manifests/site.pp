@@ -25,9 +25,4 @@ node 'vm-licpro' {
   package { 'nano':
     ensure => absent
   }
-
-  file { '/etc/php5/cli/conf.d/default.ini':
-    ensure  => absent,
-    require => Class['bazinga::roles::php'],
-  }
 }
