@@ -27,4 +27,8 @@ node 'vm-licpro' {
   package { 'nano':
     ensure => absent
   }
+
+  package { 'tree':
+    ensure => present
+  }
 }
