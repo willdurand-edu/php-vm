@@ -16,10 +16,16 @@ node 'vm-licpro' {
     server_name  => 'www.33.33.33.10.xip.io',
     doc_root     => '/var/www',
     server_admin => 'root@vm-licpro',
+    priority     => 1,
   }
 
   bazinga::apache_fpm::vhost { 'uframework':
     server_name  => 'uframework.33.33.33.10.xip.io',
+    doc_root     => '/var/www/uframework/web',
+    server_admin => 'root@vm-licpro',
+  }
+
+  bazinga::apache_fpm::vhost { 'uframework-backup':
     doc_root     => '/var/www/uframework/web',
     server_admin => 'root@vm-licpro',
     port         => 81,
