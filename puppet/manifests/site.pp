@@ -36,6 +36,11 @@ node 'vm-licpro' {
     file_ini => $php::params::fpm_ini,
   }
 
+  bazinga::php::set_var { 'html_errors':
+    value    => 'On',
+    file_ini => $php::params::fpm_ini,
+  }
+
   package { 'nano':
     ensure => absent
   }
