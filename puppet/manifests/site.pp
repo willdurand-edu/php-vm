@@ -31,6 +31,12 @@ node 'vm-licpro' {
     port         => 81,
   }
 
+  bazinga::php::set_var { 'display_errors':
+    value    => 'On',
+    file_ini => '/etc/php5/fpm/php.ini',
+    notify   => Class['php::fpm::service'],
+  }
+
   package { 'nano':
     ensure => absent
   }
