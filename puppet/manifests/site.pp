@@ -33,8 +33,7 @@ node 'vm-licpro' {
 
   bazinga::php::set_var { 'display_errors':
     value    => 'On',
-    file_ini => '/etc/php5/fpm/php.ini',
-    notify   => Class['php::fpm::service'],
+    file_ini => $php::params::fpm_ini,
   }
 
   package { 'nano':
