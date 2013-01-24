@@ -48,4 +48,8 @@ node 'vm-licpro' {
   package { 'tree':
     ensure => present
   }
+
+  package { 'git-core':
+    ensure => latest
+  }
 }
