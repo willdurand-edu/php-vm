@@ -36,9 +36,11 @@ node 'vm-licpro' {
     file_ini => $php::params::fpm_ini,
   }
 
-  bazinga::php::set_var { 'html_errors':
-    value    => 'On',
-    file_ini => $php::params::fpm_ini,
+  mysql::db { 'uframework':
+    user      => 'uframework',
+    password  => 'uframework123',
+    host      => 'localhost',
+    grant     => [ 'all' ],
   }
 
   package { 'nano':
