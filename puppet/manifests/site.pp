@@ -54,4 +54,14 @@ node 'vm-licpro' {
   package { 'git-core':
     ensure => latest
   }
+
+  php::module { 'sqlite':
+    require => Class['bazinga::roles::php_mysql'],
+  }
+
+  php::conf { 'pdo_sqlite':
+    source  => 'puppet:///modules/licpro/php/pdo_sqlite.ini',
+    require => Php::Module['sqlite'],
+    notify  => Class['php::fpm::service'],
+  }
 }
