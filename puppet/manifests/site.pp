@@ -31,6 +31,18 @@ node 'vm-licpro' {
     port         => 81,
   }
 
+  bazinga::apache_fpm::vhost { 'project-php':
+    server_name  => 'project-php.33.33.33.10.xip.io',
+    doc_root     => '/var/www/project-php/web',
+    server_admin => 'root@vm-licpro',
+  }
+
+  bazinga::apache_fpm::vhost { 'project-php-backup':
+    doc_root     => '/var/www/project-php/web',
+    server_admin => 'root@vm-licpro',
+    port         => 82,
+  }
+
   bazinga::php::set_var { 'display_errors':
     value    => 'On',
     file_ini => $php::params::fpm_ini,
