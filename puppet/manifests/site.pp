@@ -37,10 +37,11 @@ node 'vm-licpro' {
   }
 
   mysql::db { 'uframework':
-    user      => 'uframework',
-    password  => 'uframework123',
-    host      => 'localhost',
-    grant     => [ 'all' ],
+    user     => 'uframework',
+    password => 'uframework123',
+    host     => 'localhost',
+    grant    => [ 'all' ],
+    require  => Class['bazinga::roles::mysql'],
   }
 
   package { 'nano':
@@ -63,5 +64,13 @@ node 'vm-licpro' {
     source  => 'puppet:///modules/licpro/php/pdo_sqlite.ini',
     require => Php::Module['sqlite'],
     notify  => Class['php::fpm::service'],
+  }
+
+  file { [
+    '/etc/php5/conf.d/20-sqlite3.ini',
+    '/etc/php5/conf.d/20-pdo_sqlite.ini'
+  ]:
+    ensure  => absent,
+    require => Php::Conf['pdo_sqlite'],
   }
 }
