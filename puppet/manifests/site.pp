@@ -9,38 +9,16 @@ node 'vm-licpro' {
   include bazinga::apt
   include bazinga::roles::mysql
   include bazinga::roles::php_mysql
-  include bazinga::roles::apache_fpm
-  include bazinga::php::phpsh
-
-  bazinga::apache_fpm::vhost { 'www':
-    server_name  => 'www.33.33.33.10.xip.io',
-    doc_root     => '/var/www',
-    server_admin => 'root@vm-licpro',
-    priority     => 1,
+  class { 'bazinga::roles::apache_fpm':
+    apache_user  => 'vagrant',
+    apache_group => 'vagrant',
   }
 
-  bazinga::apache_fpm::vhost { 'uframework':
-    server_name  => 'uframework.33.33.33.10.xip.io',
-    doc_root     => '/var/www/uframework/web',
-    server_admin => 'root@vm-licpro',
-  }
-
-  bazinga::apache_fpm::vhost { 'uframework-backup':
-    doc_root     => '/var/www/uframework/web',
-    server_admin => 'root@vm-licpro',
-    port         => 81,
-  }
-
-  bazinga::apache_fpm::vhost { 'project-php':
-    server_name  => 'project-php.33.33.33.10.xip.io',
-    doc_root     => '/var/www/project-php/web',
-    server_admin => 'root@vm-licpro',
-  }
-
-  bazinga::apache_fpm::vhost { 'project-php-backup':
-    doc_root     => '/var/www/project-php/web',
-    server_admin => 'root@vm-licpro',
-    port         => 82,
+  bazinga::apache_fpm::vhost { 'sf2':
+    server_name   => 'sf2.33.33.33.10.xip.io',
+    serveraliases => [ 'localhost' ],
+    doc_root      => '/var/www/sf2/web',
+    server_admin  => 'root@vm-licpro',
   }
 
   bazinga::php::set_var { 'display_errors':
@@ -48,9 +26,9 @@ node 'vm-licpro' {
     file_ini => $php::params::fpm_ini,
   }
 
-  mysql::db { 'uframework':
-    user     => 'uframework',
-    password => 'uframework123',
+  mysql::db { 'sf2':
+    user     => 'licweb',
+    password => 'licweb',
     host     => 'localhost',
     grant    => [ 'all' ],
     require  => Class['bazinga::roles::mysql'],
