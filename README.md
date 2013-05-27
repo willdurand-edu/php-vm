@@ -1,4 +1,4 @@
-LicPro
+PHP VM
 ======
 
 This project provides a [Vagrant](http://vagrantup.com/) configuration, and uses
@@ -18,7 +18,7 @@ in order to configure NFS](http://vagrantup.com/v1/docs/nfs.html).
 
 #### Get the code
 
-    git clone git://github.com/willdurand/licpro-php-vm.git --recursive
+    git clone git://github.com/licpro/php-vm.git --recursive
 
 #### Install the Vagrant insecure private key
 
