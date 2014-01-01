@@ -1,0 +1,136 @@
+---
+vagrantfile-local:
+    vm:
+        box: debian-wheezy72-x64-vbox43
+        box_url: 'http://box.puphpet.com/debian-wheezy72-x64-vbox43.box'
+        hostname: null
+        network:
+            private_network: 33.33.33.10
+            forwarded_port:
+                E1GbUe1Uk4Ty:
+                    host: ''
+                    guest: ''
+        provider:
+            virtualbox:
+                modifyvm:
+                    name: student-vm
+                    natdnshostresolver1: on
+                    memory: '1024'
+                setextradata:
+                    VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
+        provision:
+            puppet:
+                manifests_path: puppet/manifests
+                options:
+                    - --verbose
+                    - '--hiera_config /vagrant/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            HsGyrUMtKOer:
+                id: vagrant-root
+                source: ./projects
+                target: /var/www
+                nfs: 'false'
+        usable_port_range: 2200..2250
+    ssh:
+        host: null
+        port: null
+        private_key_path: null
+        username: vagrant
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: ':detect'
+server:
+    packages:
+        - vim
+        - curl
+        - htop
+        - ack-grep
+        - git-core
+    dot_files:
+        -
+            bash_aliases: null
+    _prevent_empty: ''
+apache:
+    modules:
+        - php
+        - rewrite
+        - vhost_alias
+    vhosts:
+        eEFPW50MpCY1:
+            servername: sf2.dev
+            serveraliases:
+                - sf2.33.33.33.10.xip.io
+            docroot: /var/www/sf2/web
+            port: '80'
+            override:
+                - All
+        27vM9LcT1Nqc:
+            servername: projects.dev
+            serveraliases:
+                - projects.33.33.33.10.xip.io
+            docroot: /var/www
+            port: '80'
+        hBEZilyN3YrF:
+            servername: uframework.dev
+            serveraliases:
+                - uframework.33.33.33.10.xip.io
+            docroot: /var/www/uframework/web
+            port: '80'
+    user: www-data
+    group: www-data
+    default_vhost: true
+    mpm_module: prefork
+php:
+    version: '55'
+    composer: '1'
+    modules:
+        php:
+            - cli
+            - intl
+            - mcrypt
+            - curl
+            - mbstring
+            - readline
+            - sqlite
+        pear: {  }
+        pecl:
+            - pecl_http
+            - mysql
+            - PDO_MYSQL
+            - PDO_SQLITE
+            - PDO
+    ini:
+        display_errors: On
+        error_reporting: '-1'
+        session.save_path: /var/lib/php/session
+    timezone: Europe/Paris
+xdebug:
+    install: '1'
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9000'
+xhprof:
+    install: '1'
+    location: /var/www/xhprof
+mysql:
+    root_password: root
+    phpmyadmin: 0
+    databases:
+        GUgjaVVLyCvT:
+            grant:
+                - ALL
+            name: uframework
+            host: localhost
+            user: uframework
+            password: passw0rd
+            sql_file: ''
+
