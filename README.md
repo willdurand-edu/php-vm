@@ -29,11 +29,12 @@ Start the VM, then enjoy:
 
     vagrant up
 
-Here is the mapping:
+#### Filesystem Mapping
 
-| Directory (host)         | Directory (VM)           | URLs                                    |
+| Directory (Host)         | Directory (VM)           | URLs                                    |
 |--------------------------|--------------------------|-----------------------------------------|
-| projects/                | /var/www/                | http://33.33.33.10/                     |
+| projects/                | /var/www/                | http://projects.33.33.33.10.xip.io/     |
+|                          |                          | http://33.33.33.10/                     |
 |                          |                          | http://localhost:8080/                  |
 | projects/sf2/            | /var/www/sf2/            | **not accessible**                      |
 | projects/sf2/web/        | /var/www/sf2/web/        | http://sf2.33.33.33.10.xip.io/          |
@@ -41,5 +42,18 @@ Here is the mapping:
 |                          |                          | http://localhost:8081/                  |
 | projects/uframework/     | /var/www/uframework/     | **not accessible**                      |
 | projects/uframework/web/ | /var/www/uframework/web/ | http://uframework.33.33.33.10.xip.io/   |
-|                          |                          | http://33.33.33.10:82/                  |
-|                          |                          | http://localhost:8082/                  |
+|                                                     || http://33.33.33.10:82/                 |
+|                                                     || http://localhost:8082/                 |
+
+#### Databases
+
+MySQL is running on the default port. The `root` password is: `root`.
+
+The following databases are configured:
+
+* `uframework` is configured for user `uframework` (password:
+`passw0rd`), with all privileges;
+* `sf2` is configured for user `sf2` (password: `passw0rd`), with all
+  privileges;
+* `dummy` is configured for user `john` (password: `doe`), with all
+  privileges.

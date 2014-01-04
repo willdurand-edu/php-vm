@@ -61,24 +61,28 @@ apache:
         - rewrite
         - vhost_alias
     vhosts:
-        27vM9LcT1Nqc:
-            servername: projects.dev
-            serveraliases:
-                - projects.33.33.33.10.xip.io
+        projects:
+            servername: projects.33.33.33.10.xip.io
             docroot: /var/www
             port: '80'
-        eEFPW50MpCY1:
+        sf2:
+            servername: sf2.33.33.33.10.xip.io
+            docroot: /var/www/sf2/web
+            port: '80'
+            override:
+                - All
+        sf2_backup:
             servername: sf2.dev
-            serveraliases:
-                - sf2.33.33.33.10.xip.io
             docroot: /var/www/sf2/web
             port: '81'
             override:
                 - All
-        hBEZilyN3YrF:
+        uframework:
+            servername: uframework.33.33.33.10.xip.io
+            docroot: /var/www/uframework/web
+            port: '80'
+        uframework_backup:
             servername: uframework.dev
-            serveraliases:
-                - uframework.33.33.33.10.xip.io
             docroot: /var/www/uframework/web
             port: '82'
     user: www-data
@@ -123,7 +127,7 @@ mysql:
     root_password: root
     phpmyadmin: 0
     databases:
-        GUgjaVVLyCvT:
+        uframework:
             grant:
                 - ALL
             name: uframework
@@ -131,4 +135,19 @@ mysql:
             user: uframework
             password: passw0rd
             sql_file: ''
-
+        sf2:
+            grant:
+                - ALL
+            name: sf2
+            host: localhost
+            user: sf2
+            password: passw0rd
+            sql_file: ''
+        dummy:
+            grant:
+                - ALL
+            name: dummy
+            host: localhost
+            user: john
+            password: doe
+            sql_file: ''
