@@ -61,29 +61,29 @@ apache:
         - rewrite
         - vhost_alias
     vhosts:
-        eEFPW50MpCY1:
-            servername: sf2.dev
-            serveraliases:
-                - sf2.33.33.33.10.xip.io
-            docroot: /var/www/sf2/web
-            port: '80'
-            override:
-                - All
         27vM9LcT1Nqc:
             servername: projects.dev
             serveraliases:
                 - projects.33.33.33.10.xip.io
             docroot: /var/www
             port: '80'
+        eEFPW50MpCY1:
+            servername: sf2.dev
+            serveraliases:
+                - sf2.33.33.33.10.xip.io
+            docroot: /var/www/sf2/web
+            port: '81'
+            override:
+                - All
         hBEZilyN3YrF:
             servername: uframework.dev
             serveraliases:
                 - uframework.33.33.33.10.xip.io
             docroot: /var/www/uframework/web
-            port: '80'
+            port: '82'
     user: www-data
     group: www-data
-    default_vhost: true
+    default_vhost: false
     mpm_module: prefork
 php:
     version: '55'
@@ -94,13 +94,11 @@ php:
             - intl
             - mcrypt
             - curl
-            - mbstring
             - readline
             - sqlite
         pear: {  }
         pecl:
             - pecl_http
-            - mysql
             - PDO_MYSQL
             - PDO_SQLITE
             - PDO

@@ -4,6 +4,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", ip: "33.33.33.10"
 
+  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 81, host: 8081
+  config.vm.network :forwarded_port, guest: 82, host: 8082
 
   config.vm.synced_folder "./projects", "/var/www", id: "vagrant-root", :nfs => false
 
@@ -26,9 +29,6 @@ Vagrant.configure("2") do |config|
     puppet.manifests_path = "puppet/manifests"
     puppet.options = ["--verbose", "--hiera_config /vagrant/hiera.yaml", "--parser future"]
   end
-
-
-
 
   config.ssh.username = "vagrant"
 
