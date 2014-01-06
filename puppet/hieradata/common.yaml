@@ -68,6 +68,8 @@ apache:
             port: '80'
             override:
                 - All
+            aliases:
+                - { alias: /tp1, path: /var/www/tp1/public }
         sf2:
             servername: sf2.33.33.33.10.xip.io
             docroot: /var/www/sf2/web
