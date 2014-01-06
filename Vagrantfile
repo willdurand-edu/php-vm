@@ -30,6 +30,8 @@ Vagrant.configure("2") do |config|
     puppet.options = ["--verbose", "--hiera_config /vagrant/hiera.yaml", "--parser future"]
   end
 
+  config.vm.provision :shell, :inline => "echo \"Europe/Paris\" | sudo tee /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata"
+
   config.ssh.username = "vagrant"
 
   config.ssh.shell = "bash -l"
