@@ -147,6 +147,10 @@ if !empty($server_values['packages']) {
   ensure_packages( $server_values['packages'] )
 }
 
+package { 'nano':
+  ensure => absent,
+}
+
 define add_dotdeb ($release){
    apt::source { $name:
     location          => 'http://packages.dotdeb.org',
