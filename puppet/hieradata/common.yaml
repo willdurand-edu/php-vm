@@ -3,7 +3,7 @@ vagrantfile-local:
     vm:
         box: debian-wheezy72-x64-vbox43
         box_url: 'http://box.puphpet.com/debian-wheezy72-x64-vbox43.box'
-        hostname: null
+        hostname: student-vm
         network:
             private_network: 33.33.33.10
             forwarded_port:
@@ -65,6 +65,8 @@ apache:
             servername: projects.33.33.33.10.xip.io
             docroot: /var/www
             port: '80'
+            override:
+                - All
         sf2:
             servername: sf2.33.33.33.10.xip.io
             docroot: /var/www/sf2/web
@@ -81,10 +83,14 @@ apache:
             servername: uframework.33.33.33.10.xip.io
             docroot: /var/www/uframework/web
             port: '80'
+            override:
+                - All
         uframework_backup:
             servername: uframework.dev
             docroot: /var/www/uframework/web
             port: '82'
+            override:
+                - All
     user: www-data
     group: www-data
     default_vhost: false

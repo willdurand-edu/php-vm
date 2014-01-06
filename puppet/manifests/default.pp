@@ -17,7 +17,9 @@ group { 'www-data': ensure => present }
 user { $::ssh_username:
   shell  => '/bin/bash',
   home   => "/home/${::ssh_username}",
-  ensure => present
+  ensure => present,
+  groups => [ 'www-data', 'vagrant', 'sudo' ],
+  require => Group['www-data']
 }
 
 user { ['apache', 'nginx', 'httpd', 'www-data']:
