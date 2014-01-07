@@ -10,12 +10,12 @@ Installation
 #### Install Vagrant
 
 Read the [Getting Started With
-Vagrant](http://vagrantup.com/v1/docs/getting-started/index.html) page to
+Vagrant](http://docs.vagrantup.com/v2/installation/index.html) page to
 install Vagrant.
 
 #### Get the code
 
-    git clone git://github.com/licpro/php-vm.git --recursive
+    git clone git://github.com/licpro/php-vm.git
 
 #### Start the VM
 
