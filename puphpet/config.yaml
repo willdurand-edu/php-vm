@@ -1,8 +1,8 @@
 ---
 vagrantfile-local:
     vm:
-        box: puphpet/debian75-x64
-        box_url: puphpet/debian75-x64
+        box: debian-wheezy72-x64-vbox43
+        box_url: 'http://box.puphpet.com/debian-wheezy72-x64-vbox43.box'
         hostname: null
         network:
             private_network: 33.33.33.10
