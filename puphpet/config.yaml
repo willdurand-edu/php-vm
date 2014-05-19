@@ -1,33 +1,32 @@
 ---
 vagrantfile-local:
     vm:
-        box: debian-wheezy72-x64-vbox43
-        box_url: 'http://box.puphpet.com/debian-wheezy72-x64-vbox43.box'
-        hostname: student-vm
+        box: puphpet/debian75-x64
+        box_url: puphpet/debian75-x64
+        hostname: null
         network:
             private_network: 33.33.33.10
             forwarded_port:
-                E1GbUe1Uk4Ty:
-                    host: ''
-                    guest: ''
+                AtS17uN5nh1K:
+                    host: '8816'
+                    guest: '22'
         provider:
             virtualbox:
                 modifyvm:
-                    name: student-vm
                     natdnshostresolver1: on
                     memory: '1024'
                 setextradata:
                     VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
         provision:
             puppet:
-                manifests_path: puppet/manifests
+                manifests_path: puphpet/puppet
+                manifest_file: manifest.pp
                 options:
-                    - --verbose
-                    - '--hiera_config /vagrant/hiera.yaml'
+                    - '--verbose'
+                    - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            HsGyrUMtKOer:
-                id: vagrant-root
+            YqXAWUv2w7tY:
                 source: ./projects
                 target: /var/www
                 nfs: 'false'
@@ -43,7 +42,7 @@ vagrantfile-local:
         forward_x11: false
         shell: 'bash -l'
     vagrant:
-        host: ':detect'
+        host: detect
 server:
     packages:
         - vim
@@ -56,65 +55,119 @@ server:
         -
             bash_aliases: null
     _prevent_empty: ''
+mailcatcher:
+    install: '1'
+    settings:
+        smtp_ip: 0.0.0.0
+        smtp_port: 1025
+        http_ip: 0.0.0.0
+        http_port: '1080'
+        mailcatcher_path: /usr/local/bin
+        log_path: /var/log/mailcatcher/mailcatcher.log
 apache:
+    install: '1'
+    settings:
+        user: www-data
+        group: www-data
+        default_vhost: true
+        manage_user: false
+        manage_group: false
+        sendfile: 0
     modules:
         - php
         - rewrite
         - vhost_alias
     vhosts:
-        projects:
+        v5ifECikSI86:
             servername: projects.33.33.33.10.xip.io
             docroot: /var/www
             port: '80'
             override:
                 - All
-            aliases:
-                - { alias: /tp1, path: /var/www/tp1/public }
-        sf2:
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+        JQk4VZYvv4NI:
             servername: sf2.33.33.33.10.xip.io
             docroot: /var/www/sf2/web
             port: '80'
             override:
                 - All
-        sf2_backup:
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+        s7Ewy27FU7qm:
             servername: sf2.dev
             docroot: /var/www/sf2/web
             port: '81'
             override:
                 - All
-        uframework:
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+        nWmk3szLHKc1:
             servername: uframework.33.33.33.10.xip.io
             docroot: /var/www/uframework/web
             port: '80'
             override:
                 - All
-        uframework_backup:
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+        USyuzkQjOQSb:
             servername: uframework.dev
             docroot: /var/www/uframework/web
             port: '82'
             override:
                 - All
-    user: www-data
-    group: www-data
-    default_vhost: false
-    mpm_module: prefork
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
+    mod_pagespeed: 0
+    mod_spdy: 0
+nginx:
+    install: 0
+    vhosts:
+        1NW5EyjqyDhH:
+            server_name: awesome.dev
+            server_aliases:
+                - www.awesome.dev
+            www_root: /var/www/awesome.dev
+            listen_port: '80'
+            index_files:
+                - index.html
+                - index.htm
+                - index.php
+            envvars:
+                - 'APP_ENV dev'
 php:
+    install: '1'
     version: '55'
     composer: '1'
     modules:
         php:
             - cli
+            - curl
             - intl
             - mcrypt
-            - curl
             - readline
             - sqlite
         pear: {  }
         pecl:
-            - pecl_http
+            - PDO
             - PDO_MYSQL
             - PDO_SQLITE
-            - PDO
+            - pecl_http
     ini:
         display_errors: On
         error_reporting: '-1'
@@ -131,12 +184,17 @@ xdebug:
         xdebug.remote_port: '9000'
 xhprof:
     install: '1'
-    location: /var/www/xhprof
+drush:
+    install: 0
+    settings:
+        drush.tag_branch: 6.x
 mysql:
+    install: '1'
     root_password: root
     phpmyadmin: 0
+    adminer: 0
     databases:
-        uframework:
+        Qu9U8EMLyxUZ:
             grant:
                 - ALL
             name: uframework
@@ -144,7 +202,7 @@ mysql:
             user: uframework
             password: passw0rd
             sql_file: ''
-        sf2:
+        59ovt2nnO1G7:
             grant:
                 - ALL
             name: sf2
@@ -152,7 +210,7 @@ mysql:
             user: sf2
             password: passw0rd
             sql_file: ''
-        dummy:
+        83GoAQBOZcLv:
             grant:
                 - ALL
             name: dummy
@@ -160,3 +218,46 @@ mysql:
             user: john
             password: doe
             sql_file: ''
+postgresql:
+    install: 0
+    settings:
+        root_password: '123'
+        user_group: postgres
+        encoding: UTF8
+        version: '9.3'
+    databases: {  }
+    adminer: 0
+mariadb:
+    install: 0
+    root_password: '123'
+    phpmyadmin: 0
+    adminer: 0
+    databases: {  }
+    version: '10.0'
+mongodb:
+    install: 0
+    settings:
+        auth: 1
+        port: '27017'
+    databases: {  }
+redis:
+    install: 0
+    settings:
+        conf_port: '6379'
+beanstalkd:
+    install: 0
+    settings:
+        listenaddress: 0.0.0.0
+        listenport: '13000'
+        maxjobsize: '65535'
+        maxconnections: '1024'
+        binlogdir: /var/lib/beanstalkd/binlog
+        binlogfsync: null
+        binlogsize: '10485760'
+    beanstalk_console: 0
+    binlogdir: /var/lib/beanstalkd/binlog
+rabbitmq:
+    install: 0
+    settings:
+        port: '5672'
+
