@@ -1,2 +1,5 @@
 projects/
 .vagrant/
+puphpet/files/dot/ssh/id_rsa
+puphpet/files/dot/ssh/id_rsa.ppk
+puphpet/files/dot/ssh/id_rsa.pub

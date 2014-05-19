@@ -10,6 +10,15 @@ vagrantfile-local:
                 AtS17uN5nh1K:
                     host: '8816'
                     guest: '22'
+                web:
+                    host: '8080'
+                    guest: '80'
+                web_sf2:
+                    host: '8081'
+                    guest: '81'
+                web_ufw:
+                    host: '8082'
+                    guest: '82'
         provider:
             virtualbox:
                 modifyvm:
