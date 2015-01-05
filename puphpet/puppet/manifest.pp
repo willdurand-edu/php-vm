@@ -274,7 +274,7 @@ if hash_key_equals($mailcatcher_values, 'install', 1) {
     priority    => '100',
     user        => 'mailcatcher',
     autostart   => true,
-    autorestart => true,
+    autorestart => 'true',
     environment => {
       'PATH' => "/bin:/sbin:/usr/bin:/usr/sbin:${mailcatcher_values['settings']['path']}"
     },
@@ -739,7 +739,7 @@ if hash_key_equals($php_values, 'install', 1) {
     each( $php_values['ini'] ) |$key, $value| {
       if is_array($value) {
         each( $php_values['ini'][$key] ) |$innerkey, $innervalue| {
-          puphpet::ini { "${key}_${innerkey}":
+          puphpet::php::ini { "${key}_${innerkey}":
             entry       => "CUSTOM_${innerkey}/${key}",
             value       => $innervalue,
             php_version => $php_values['version'],
@@ -747,7 +747,7 @@ if hash_key_equals($php_values, 'install', 1) {
           }
         }
       } else {
-        puphpet::ini { $key:
+        puphpet::php::ini { $key:
           entry       => "CUSTOM/${key}",
           value       => $value,
           php_version => $php_values['version'],
@@ -770,7 +770,7 @@ if hash_key_equals($php_values, 'install', 1) {
     }
   }
 
-  puphpet::ini { $key:
+  puphpet::php::ini { $key:
     entry       => 'CUSTOM/date.timezone',
     value       => $php_values['timezone'],
     php_version => $php_values['version'],
@@ -838,66 +838,19 @@ if hash_key_equals($apache_values, 'install', 1) {
 if hash_key_equals($xdebug_values, 'install', 1)
   and hash_key_equals($php_values, 'install', 1)
 {
-  class { 'puphpet::xdebug':
+  class { 'puphpet::php::xdebug':
     webserver => $xdebug_webserver_service
   }
 
   if is_hash($xdebug_values['settings']) and count($xdebug_values['settings']) > 0 {
     each( $xdebug_values['settings'] ) |$key, $value| {
-      puphpet::ini { $key:
+      puphpet::php::ini { $key:
         entry       => "XDEBUG/${key}",
         value       => $value,
         php_version => $php_values['version'],
         webserver   => $xdebug_webserver_service
       }
     }
-  }
-}
-
-## Begin Xhprof manifest
-
-if $php_values == undef {
-  $php_values = hiera('php', false)
-} if $xhprof_values == undef {
-  $xhprof_values = hiera('xhprof', false)
-} if $apache_values == undef {
-  $apache_values = hiera('apache', false)
-} if $nginx_values == undef {
-  $nginx_values = hiera('nginx', false)
-}
-
-if hash_key_equals($xhprof_values, 'install', 1)
-  and hash_key_equals($php_values, 'install', 1)
-{
-  if $::operatingsystem == 'ubuntu' {
-    apt::key { '8D0DC64F':
-      key_server => 'hkp://keyserver.ubuntu.com:80'
-    }
-
-    apt::ppa { 'ppa:brianmercer/php5-xhprof': require => Apt::Key['8D0DC64F'] }
-  }
-
-  if hash_key_equals($apache_values, 'install', 1) {
-    $xhprof_webroot_location = $puphpet::params::apache_webroot_location
-    $xhprof_webserver_service = 'httpd'
-  } elsif hash_key_equals($nginx_values, 'install', 1) {
-    $xhprof_webroot_location = $puphpet::params::nginx_webroot_location
-    $xhprof_webserver_service = 'nginx'
-  } else {
-    $xhprof_webroot_location = $xhprof_values['location']
-    $xhprof_webserver_service = undef
-  }
-
-  if ! defined(Package['graphviz']) {
-    package { 'graphviz':
-      ensure  => present,
-    }
-  }
-
-  class { 'puphpet::xhprof':
-    php_version       => $php_values['version'],
-    webroot_location  => $xhprof_webroot_location,
-    webserver_service => $xhprof_webserver_service
   }
 }
 
