@@ -15,7 +15,7 @@ install Vagrant.
 
 #### Get the code
 
-    git clone git://github.com/licpro/php-vm.git
+    git clone git://github.com/willdurand-edu/php-vm.git
 
 #### Start the VM
 
