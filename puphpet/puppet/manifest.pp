@@ -428,7 +428,8 @@ if hash_key_equals($apache_values, 'install', 1) {
           'ssl_cert'        => $vhost['ssl_cert'] ? { undef => undef, '' => undef, default => $vhost['ssl_cert'] },
           'ssl_key'         => $vhost['ssl_key'] ? { undef => undef, '' => undef, default => $vhost['ssl_key'] },
           'ssl_chain'       => $vhost['ssl_chain'] ? { undef => undef, '' => undef, default => $vhost['ssl_chain'] },
-          'ssl_certs_dir'   => $vhost['ssl_certs_dir'] ? { undef => undef, '' => undef, default => $vhost['ssl_certs_dir'] }
+          'ssl_certs_dir'   => $vhost['ssl_certs_dir'] ? { undef => undef, '' => undef, default => $vhost['ssl_certs_dir'] },
+          'aliases'         => $vhost['aliases'] ? { undef => undef, '' => undef, default => $vhost['aliases'] }
         })
       })
     }

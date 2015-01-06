@@ -65,7 +65,7 @@ server:
             bash_aliases: null
     _prevent_empty: ''
 mailcatcher:
-    install: '1'
+    install: '0'
     settings:
         smtp_ip: 0.0.0.0
         smtp_port: 1025
@@ -98,6 +98,8 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
+            aliases:
+                - { alias: /tp1, path: /var/www/tp1/public }
         JQk4VZYvv4NI:
             servername: sf2.33.33.33.10.xip.io
             docroot: /var/www/sf2/web
@@ -142,6 +144,7 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
+
     mod_pagespeed: 0
     mod_spdy: 0
 nginx:
@@ -161,7 +164,7 @@ nginx:
                 - 'APP_ENV dev'
 php:
     install: '1'
-    version: '55'
+    version: '56'
     composer: '1'
     modules:
         php:
@@ -192,9 +195,9 @@ xdebug:
         xdebug.remote_handler: dbgp
         xdebug.remote_port: '9000'
 xhprof:
-    install: '1'
+    install: '0'
 drush:
-    install: 0
+    install: '0'
     settings:
         drush.tag_branch: 6.x
 mysql:
