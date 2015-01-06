@@ -78,7 +78,7 @@ apache:
     settings:
         user: www-data
         group: www-data
-        default_vhost: true
+        default_vhost: false
         manage_user: false
         manage_group: false
         sendfile: 0
@@ -98,8 +98,20 @@ apache:
             ssl_key: ''
             ssl_chain: ''
             ssl_certs_dir: ''
+        therealdefault:
+            servername: default
+            docroot: /var/www
+            port: '80'
+            override:
+                - All
+            custom_fragment: ''
+            ssl_cert: ''
+            ssl_key: ''
+            ssl_chain: ''
+            ssl_certs_dir: ''
             aliases:
                 - { alias: /tp1, path: /var/www/tp1/public }
+            priority: 15
         JQk4VZYvv4NI:
             servername: sf2.33.33.33.10.xip.io
             docroot: /var/www/sf2/web
